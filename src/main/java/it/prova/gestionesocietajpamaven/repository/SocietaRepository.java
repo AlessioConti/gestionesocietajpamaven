@@ -11,8 +11,8 @@ import it.prova.gestionesocietajpamaven.model.Societa;
 
 public interface SocietaRepository extends CrudRepository<Societa, Long>, QueryByExampleExecutor<Societa>{
 	
-	@Query("from Societa s join s.dipendenti d where d.reddito > ?1")
 	@EntityGraph(attributePaths = { "dipendenti" })
+	@Query("from Societa s join s.dipendenti d where d.redditoAnnuoLordo > ?1")
 	List<Societa> findAllDistinctByDipendenti_RedditoAnnuoLordoGreaterThan(int redditoAnnuo);
 	
 }

@@ -27,7 +27,6 @@ public class Societa {
 	private String indirizzo;
 	@Column(name = "dataFondazione")
 	private Date dataFondazione;
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "societa")
 	private Set<Dipendente> dipendenti = new HashSet<>();
 
@@ -99,7 +98,7 @@ public class Societa {
 	@Override
 	public String toString() {
 		return "Societa [id=" + id + ", ragioneSociale=" + ragioneSociale + ", indirizzo=" + indirizzo
-				+ ", dataFondazione=" + dataFondazione + ", dipendenti=" + dipendenti + "]";
+				+ ", dataFondazione=" + dataFondazione + "]";
 	}
 
 }
