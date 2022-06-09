@@ -9,10 +9,10 @@ import org.springframework.data.repository.query.QueryByExampleExecutor;
 
 import it.prova.gestionesocietajpamaven.model.Societa;
 
-public interface SocietaRepository extends CrudRepository<Societa, Long>, QueryByExampleExecutor<Societa>{
-	
+public interface SocietaRepository extends CrudRepository<Societa, Long>, QueryByExampleExecutor<Societa> {
+
 	@EntityGraph(attributePaths = { "dipendenti" })
 	@Query("SELECT DISTINCT s FROM Societa s LEFT JOIN s.dipendenti d WHERE d.redditoAnnuoLordo >= 30000")
 	List<Societa> findAllDistinctByDipendenti_RedditoAnnuoLordoGreaterThan();
-	
+
 }

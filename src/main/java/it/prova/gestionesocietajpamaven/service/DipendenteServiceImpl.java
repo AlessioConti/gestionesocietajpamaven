@@ -15,10 +15,10 @@ public class DipendenteServiceImpl implements DipendenteService {
 
 	@Autowired
 	private DipendenteRepository dipendenteRepository;
-	
+
 	@Transactional(readOnly = true)
 	public List<Dipendente> listAllDipendenti() {
-		return (List<Dipendente>)dipendenteRepository.findAll();
+		return (List<Dipendente>) dipendenteRepository.findAll();
 	}
 
 	@Transactional(readOnly = true)
@@ -48,7 +48,7 @@ public class DipendenteServiceImpl implements DipendenteService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 

@@ -44,7 +44,7 @@ public class Dipendente {
 		this.redditoAnnuoLordo = redditoAnnuoLordo;
 		this.societa = societa;
 	}
-	
+
 	public Dipendente(Long id, String nome, String cognome, Date dataAssunzione, Integer redditoAnnuoLordo) {
 		super();
 		this.id = id;
@@ -53,7 +53,7 @@ public class Dipendente {
 		this.dataAssunzione = dataAssunzione;
 		this.redditoAnnuoLordo = redditoAnnuoLordo;
 	}
-	
+
 	public Dipendente(String nome, String cognome, Date dataAssunzione, Integer redditoAnnuoLordo) {
 		super();
 		this.nome = nome;

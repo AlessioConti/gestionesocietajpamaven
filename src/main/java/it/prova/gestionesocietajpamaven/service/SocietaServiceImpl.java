@@ -11,15 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.gestionesocietajpamaven.model.Societa;
 import it.prova.gestionesocietajpamaven.repository.SocietaRepository;
+
 @Service
 public class SocietaServiceImpl implements SocietaService {
 
 	@Autowired
 	private SocietaRepository societaRepository;
-	
+
 	@Transactional(readOnly = true)
 	public List<Societa> listAllSocieta() {
-		return (List<Societa>)societaRepository.findAll();
+		return (List<Societa>) societaRepository.findAll();
 	}
 
 	@Transactional(readOnly = true)
@@ -44,16 +45,15 @@ public class SocietaServiceImpl implements SocietaService {
 
 	@Transactional(readOnly = true)
 	public List<Societa> findByExample(Societa example) {
-		ExampleMatcher matcher = ExampleMatcher.matching()
-				.withStringMatcher(StringMatcher.CONTAINING);
-		return (List<Societa>)societaRepository.findAll(Example.of(example, matcher));
+		ExampleMatcher matcher = ExampleMatcher.matching().withStringMatcher(StringMatcher.CONTAINING);
+		return (List<Societa>) societaRepository.findAll(Example.of(example, matcher));
 	}
 
 	@Transactional
 	public void removeConEccezione(Societa societaInstance) {
-		if(societaInstance.getDipendenti() != null && !societaInstance.getDipendenti().isEmpty())
+		if (societaInstance.getDipendenti() != null && !societaInstance.getDipendenti().isEmpty())
 			throw new RuntimeException("Impossibile eliminare la societa con i dipendenti");
-		
+
 		societaRepository.delete(societaInstance);
 	}
 
