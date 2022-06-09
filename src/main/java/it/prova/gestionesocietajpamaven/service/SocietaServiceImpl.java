@@ -51,8 +51,10 @@ public class SocietaServiceImpl implements SocietaService {
 
 	@Transactional
 	public void removeConEccezione(Societa societaInstance) {
+		if(societaInstance.getDipendenti() != null && !societaInstance.getDipendenti().isEmpty())
+			throw new RuntimeException("Impossibile eliminare la societa con i dipendenti");
+		
 		societaRepository.delete(societaInstance);
-		throw new RuntimeException("Eccezione di prova transazione");
 	}
 
 	@Transactional(readOnly = true)

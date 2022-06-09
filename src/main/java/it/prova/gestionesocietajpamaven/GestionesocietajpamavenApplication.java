@@ -24,6 +24,8 @@ public class GestionesocietajpamavenApplication implements CommandLineRunner{
 		batteriaDiTestService.listAllSocieta();
 		batteriaDiTestService.testInserisciNuovaSocieta();
 		batteriaDiTestService.testFindSocietaByExample();
+		batteriaDiTestService.testRimozioneSocieta();
+		batteriaDiTestService.testInserisciDipendenteInSocieta();
 		
 		System.out.println("################ FINE   #################");
 	}

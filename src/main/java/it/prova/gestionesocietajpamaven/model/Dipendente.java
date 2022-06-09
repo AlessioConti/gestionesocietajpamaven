@@ -44,6 +44,15 @@ public class Dipendente {
 		this.redditoAnnuoLordo = redditoAnnuoLordo;
 		this.societa = societa;
 	}
+	
+	public Dipendente(Long id, String nome, String cognome, Date dataAssunzione, Integer redditoAnnuoLordo) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dataAssunzione = dataAssunzione;
+		this.redditoAnnuoLordo = redditoAnnuoLordo;
+	}
 
 	public Long getId() {
 		return id;

@@ -1,11 +1,14 @@
 package it.prova.gestionesocietajpamaven.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.prova.gestionesocietajpamaven.model.Dipendente;
 import it.prova.gestionesocietajpamaven.model.Societa;
 
 @Service
@@ -103,9 +106,30 @@ public class BatteriaDiTestService {
 			System.out.println(societaItem);
 	}
 	
-	public void inserisciDipendenteInSocieta() {
+	public void testInserisciDipendenteInSocieta() {
 		Long nowInMillisecondi = new Date().getTime();
 		
+		Societa nuovaSocieta = null;
+		Dipendente nuovoDipendente = null;
+		try {
+			nuovaSocieta = new Societa(8L, "Tentativo ",
+					"Via Mosca, 10 " + nowInMillisecondi, new SimpleDateFormat("dd/MM/yyyy").parse("10/12/1970"));
+			
+			societaService.inserisciNuovo(nuovaSocieta);
+			
+			nowInMillisecondi++;
+			
+			nuovoDipendente = new Dipendente(1L, "Alessio", "Conti" + nowInMillisecondi, new SimpleDateFormat("dd/MM/yyyy").parse("04/28/2022"), 250000);
+			nuovoDipendente.setSocieta(nuovaSocieta);
+			
+			dipendenteService.inserisciNuovo(nuovoDipendente);
+			if (nuovoDipendente.getId() == null || nuovoDipendente.getId() < 1)
+				throw new RuntimeException("testInserisciDipendente...failed: inserimento fallito");
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
+		System.out.println("testInserisciDipendenti concluso...........");
 	}
 }
