@@ -43,7 +43,13 @@ public class DipendenteServiceImpl implements DipendenteService {
 
 	@Transactional(readOnly = true)
 	public List<Dipendente> trovaDipendentiPiuAnzianiDiSocietaFondatePrimaDei90() {
-		return dipendenteRepository.findFirstBySocieta_DataFondazioneLowerThan1990OrderByDataAssunzioneDesc();
+		try {
+			return dipendenteRepository.findFirstBySocieta_DataFondazioneLowerThan1990OrderByDataAssunzioneDesc();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	@Transactional

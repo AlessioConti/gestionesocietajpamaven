@@ -25,7 +25,7 @@ public class BatteriaDiTestService {
 	public void testInserisciNuovaSocieta() {
 		Long nowInMillisecondi = new Date().getTime();
 		
-		Societa societaTemp = new Societa(1L, "Nome "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
+		Societa societaTemp = new Societa("Nome "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
 		
 		societaService.inserisciNuovo(societaTemp);
 		if(societaTemp.getId() == null || societaTemp.getId() < 1)
@@ -36,13 +36,13 @@ public class BatteriaDiTestService {
 	public void testFindSocietaByExample() {
 		Long nowInMillisecondi = new Date().getTime();
 		
-		Societa societaTemp = new Societa(2L, "Nome "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
+		Societa societaTemp = new Societa("Nome "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
 		
 		societaService.inserisciNuovo(societaTemp);
 		if(societaTemp.getId() == null || societaTemp.getId() < 1)
 			throw new RuntimeException("testFindSocietaByExample...failed: inserimento primo elemento fallito");
 		
-		Societa societaTemp2 = new Societa(3L, "Nomignolo "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
+		Societa societaTemp2 = new Societa("Nomignolo "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
 		
 		societaService.inserisciNuovo(societaTemp2);
 		if(societaTemp2.getId() == null || societaTemp2.getId() < 1)
@@ -64,13 +64,13 @@ public class BatteriaDiTestService {
 	public void testRimozioneSocieta() {
 		Long nowInMillisecondi = new Date().getTime();
 		
-		Societa societaTemp = new Societa(4L, "Nome "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
+		Societa societaTemp = new Societa("Nome "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
 		
 		societaService.inserisciNuovo(societaTemp);
 		if(societaTemp.getId() == null || societaTemp.getId() < 1)
 			throw new RuntimeException("testRimozioneSocieta...failed: inserimento primo elemento fallito");
 		
-		Societa societaTemp2 = new Societa(5L, "Nomignolo "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
+		Societa societaTemp2 = new Societa("Nomignolo "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
 		
 		societaService.inserisciNuovo(societaTemp2);
 		if(societaTemp2.getId() == null || societaTemp2.getId() < 1)
@@ -89,13 +89,13 @@ public class BatteriaDiTestService {
 	public void listAllSocieta() {
 		Long nowInMillisecondi = new Date().getTime();
 		
-		Societa societaTemp = new Societa(6L, "Nome "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
+		Societa societaTemp = new Societa("Nome "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
 		
 		societaService.inserisciNuovo(societaTemp);
 		if(societaTemp.getId() == null || societaTemp.getId() < 1)
 			throw new RuntimeException("listAllSocieta...failed: inserimento primo elemento fallito");
 		
-		Societa societaTemp2 = new Societa(7L, "Nomignolo "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
+		Societa societaTemp2 = new Societa("Nomignolo "+nowInMillisecondi, nowInMillisecondi.toString(), new Date());
 		
 		societaService.inserisciNuovo(societaTemp2);
 		if(societaTemp2.getId() == null || societaTemp2.getId() < 1)
@@ -112,14 +112,16 @@ public class BatteriaDiTestService {
 		Societa nuovaSocieta = null;
 		Dipendente nuovoDipendente = null;
 		try {
-			nuovaSocieta = new Societa(8L, "Tentativo ",
+			nuovaSocieta = new Societa("Tentativo ",
 					"Via Mosca, 10 " + nowInMillisecondi, new SimpleDateFormat("dd/MM/yyyy").parse("10/12/1970"));
 			
 			societaService.inserisciNuovo(nuovaSocieta);
+			if(nuovaSocieta.getId() == 0 || nuovaSocieta.getId() < 1)
+				throw new RuntimeException("test fallito");
 			
 			nowInMillisecondi++;
 			
-			nuovoDipendente = new Dipendente(1L, "Alessio", "Conti" + nowInMillisecondi, new SimpleDateFormat("dd/MM/yyyy").parse("04/28/2022"), 250000);
+			nuovoDipendente = new Dipendente("Alessio", "Conti" + nowInMillisecondi, new SimpleDateFormat("dd/MM/yyyy").parse("04/28/2022"), 250000);
 			nuovoDipendente.setSocieta(nuovaSocieta);
 			
 			dipendenteService.inserisciNuovo(nuovoDipendente);
@@ -131,5 +133,36 @@ public class BatteriaDiTestService {
 		}
 		
 		System.out.println("testInserisciDipendenti concluso...........");
+	}
+	
+	public void testModificaDipendente() {
+
+		Societa societaTemp = null;
+		Dipendente dipendenteTemp = null;
+		try {
+			societaTemp = new Societa("Best Programming s.p.a. ", "Via Napoli 88 ", new SimpleDateFormat("dd/MM/yyyy").parse("20/01/2001"));
+			
+			societaService.inserisciNuovo(societaTemp);
+			
+			dipendenteTemp = new Dipendente("Mario", "Rossi", new SimpleDateFormat("dd/MM/yyyy").parse("03/05/1980"), 250000);
+			dipendenteTemp.setSocieta(societaTemp);
+			
+			dipendenteService.inserisciNuovo(dipendenteTemp);
+			if (dipendenteTemp.getId() == null || dipendenteTemp.getId() < 1)
+				throw new RuntimeException("testInserisciDipendente...failed: inserimento fallito");
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		Dipendente dipendenteUpdate = dipendenteTemp;
+		dipendenteUpdate.setNome("Luigi ");
+		dipendenteUpdate.setCognome("Verdi ");
+		
+		dipendenteService.aggiorna(dipendenteUpdate);
+		
+		System.out.println("testModificaDipendente..................OK");
 	}
 }

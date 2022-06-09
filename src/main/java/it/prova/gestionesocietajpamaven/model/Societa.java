@@ -49,6 +49,13 @@ public class Societa {
 		this.indirizzo = indirizzo;
 		this.dataFondazione = dataFondazione;
 	}
+	
+	public Societa(String ragioneSociale, String indirizzo, Date dataFondazione) {
+		super();
+		this.ragioneSociale = ragioneSociale;
+		this.indirizzo = indirizzo;
+		this.dataFondazione = dataFondazione;
+	}
 
 	public Societa(String ragioneSociale) {
 		super();
