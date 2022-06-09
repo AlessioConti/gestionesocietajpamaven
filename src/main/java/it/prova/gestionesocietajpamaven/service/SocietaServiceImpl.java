@@ -58,8 +58,8 @@ public class SocietaServiceImpl implements SocietaService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Societa> cercaSocietaConDipendentiDalRedditoMaggioreDi(int redditoControllo) {
-		return societaRepository.findAllDistinctByDipendenti_RedditoAnnuoLordoGreaterThan(redditoControllo);
+	public List<Societa> cercaSocietaConDipendentiDalRedditoMaggioreDi30000() {
+		return societaRepository.findAllDistinctByDipendenti_RedditoAnnuoLordoGreaterThan();
 	}
 
 }

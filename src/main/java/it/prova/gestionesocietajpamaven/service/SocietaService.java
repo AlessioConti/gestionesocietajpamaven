@@ -20,5 +20,5 @@ public interface SocietaService {
 	
 	public void removeConEccezione(Societa societaInstance);
 	
-	public List<Societa> cercaSocietaConDipendentiDalRedditoMaggioreDi(int redditoControllo);
+	public List<Societa> cercaSocietaConDipendentiDalRedditoMaggioreDi30000();
 }
