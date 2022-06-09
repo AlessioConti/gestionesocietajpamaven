@@ -55,7 +55,7 @@ public class BatteriaDiTestService {
 		for(Societa societaItem : risultati)
 			System.out.println(societaItem);
 		
-		System.out.println("testInserisciNuovaSocieta concluso");
+		System.out.println("testFindSocietaByExample concluso");
 	}
 	
 	public void testRimozioneSocieta() {
