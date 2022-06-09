@@ -42,20 +42,20 @@ public class SocietaServiceImpl implements SocietaService {
 		societaRepository.delete(societaInstance);
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<Societa> findByExample(Societa example) {
 		ExampleMatcher matcher = ExampleMatcher.matching()
 				.withStringMatcher(StringMatcher.CONTAINING);
 		return (List<Societa>)societaRepository.findAll(Example.of(example, matcher));
 	}
 
-	@Override
+	@Transactional
 	public void removeConEccezione(Societa societaInstance) {
 		societaRepository.delete(societaInstance);
 		throw new RuntimeException("Eccezione di prova transazione");
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<Societa> cercaSocietaConDipendentiDalRedditoMaggioreDi(int redditoControllo) {
 		return societaRepository.findAllDistinctByDipendenti_RedditoAnnuoLordoGreaterThan(redditoControllo);
 	}

@@ -41,12 +41,12 @@ public class DipendenteServiceImpl implements DipendenteService {
 		dipendenteRepository.delete(dipendenteInstance);
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<Dipendente> trovaDipendentiPiuAnzianiDiSocietaFondatePrimaDei90() {
 		return dipendenteRepository.findFirstBySocieta_DataFondazioneLowerThan1990OrderByDataAssunzioneDesc();
 	}
 
-	@Override
+	@Transactional
 	public void addTo(Dipendente dipendenteInstance, Societa societaInstance) {
 		dipendenteInstance.setSocieta(societaInstance);
 		dipendenteRepository.save(dipendenteInstance);

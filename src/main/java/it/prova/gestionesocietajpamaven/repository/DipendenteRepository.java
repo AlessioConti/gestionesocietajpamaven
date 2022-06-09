@@ -11,7 +11,7 @@ import it.prova.gestionesocietajpamaven.model.Dipendente;
 
 public interface DipendenteRepository extends CrudRepository<Dipendente, Long>, QueryByExampleExecutor<Dipendente>{
 	
-	//@Query("from Dipendente d join d.societa s where s.dataFondazione < 1990-01-01 order by d.dataAssunzione desc")
+	@Query("from Dipendente d join d.societa s where s.dataFondazione < 1990-01-01 order by d.dataAssunzione desc")
 	@EntityGraph(attributePaths = { "societa" })
 	List<Dipendente> findFirstBySocieta_DataFondazioneLowerThan1990OrderByDataAssunzioneDesc();
 	

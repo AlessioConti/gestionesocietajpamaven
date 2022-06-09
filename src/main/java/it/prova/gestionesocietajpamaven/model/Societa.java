@@ -14,24 +14,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "societa")
+@Table(name = "societa")
 public class Societa {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private Long id;
-	@Column(name="ragioneSociale")
+	@Column(name = "ragioneSociale")
 	private String ragioneSociale;
-	@Column(name="indirizzo")
+	@Column(name = "indirizzo")
 	private String indirizzo;
-	@Column(name="dataFondazione")
+	@Column(name = "dataFondazione")
 	private Date dataFondazione;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "societa")
 	private Set<Dipendente> dipendenti = new HashSet<>();
-	
-	public Societa() {}
+
+	public Societa() {
+	}
 
 	public Societa(Long id, String ragioneSociale, String indirizzo, Date dataFondazione, Set<Dipendente> dipendenti) {
 		super();
@@ -41,7 +42,7 @@ public class Societa {
 		this.dataFondazione = dataFondazione;
 		this.dipendenti = dipendenti;
 	}
-	
+
 	public Societa(Long id, String ragioneSociale, String indirizzo, Date dataFondazione) {
 		super();
 		this.id = id;
@@ -49,7 +50,7 @@ public class Societa {
 		this.indirizzo = indirizzo;
 		this.dataFondazione = dataFondazione;
 	}
-	
+
 	public Societa(String ragioneSociale) {
 		super();
 		this.ragioneSociale = ragioneSociale;
@@ -100,6 +101,5 @@ public class Societa {
 		return "Societa [id=" + id + ", ragioneSociale=" + ragioneSociale + ", indirizzo=" + indirizzo
 				+ ", dataFondazione=" + dataFondazione + ", dipendenti=" + dipendenti + "]";
 	}
-	
-	
+
 }

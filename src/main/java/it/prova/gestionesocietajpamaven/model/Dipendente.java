@@ -23,15 +23,16 @@ public class Dipendente {
 	private String nome;
 	@Column(name = "cognome")
 	private String cognome;
-	@Column(name="dataAssunzione")
+	@Column(name = "dataAssunzione")
 	private Date dataAssunzione;
-	@Column(name="redditoAnnuoLordo")
+	@Column(name = "redditoAnnuoLordo")
 	private Integer redditoAnnuoLordo;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="societa_id", nullable=false)
+	@JoinColumn(name = "societa_id", nullable = false)
 	private Societa societa;
-	
-	public Dipendente() {}
+
+	public Dipendente() {
+	}
 
 	public Dipendente(Long id, String nome, String cognome, Date dataAssunzione, Integer redditoAnnuoLordo,
 			Societa societa) {
@@ -97,6 +98,5 @@ public class Dipendente {
 		return "Dipendente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", dataAssunzione=" + dataAssunzione
 				+ ", redditoAnnuoLordo=" + redditoAnnuoLordo + ", societa=" + societa + "]";
 	}
-	
-	
+
 }
